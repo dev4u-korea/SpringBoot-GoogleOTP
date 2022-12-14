@@ -102,7 +102,7 @@ public class GoogleOTP {
         }
     }
 
-    public void generateQRcode(String data, String path, String charset,int h, int w) throws WriterException, IOException {
+    public void saveQRImage(String data, String path, String charset,int h, int w) throws WriterException, IOException {
         //the BitMatrix class represents the 2D matrix of bits
         //MultiFormatWriter is a factory class that finds the appropriate Writer subclass for the BarcodeFormat requested and encodes the barcode with the supplied contents.
         BitMatrix matrix = new MultiFormatWriter().encode(new String(data.getBytes(charset), charset), BarcodeFormat.QR_CODE, w, h);
