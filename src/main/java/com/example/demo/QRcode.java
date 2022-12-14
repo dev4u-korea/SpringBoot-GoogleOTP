@@ -2,9 +2,7 @@ package com.example.demo;
 
 import com.google.zxing.common.CharacterSetECI;
 import kr.co.hectofinancial.util.GoogleOTP;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -17,14 +15,13 @@ import java.util.HashMap;
 @RestController
 public class QRcode {
 
+    /*
+     TEST URL = http://localhost:8080/qrimage?userName=moonsun&hostName=nbo.settlebank.co.kr&encodedKey=7BXKISLMVNPBSDAE
+     */
     @RequestMapping(value = "/qrimage", method = RequestMethod.GET)
     public void downloadQrImage(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         GoogleOTP otp = new GoogleOTP();
-
-
-        //TEST URL = http://localhost:8080/qrimage?userName=moonsun&hostName=nbo.settlebank.co.kr&encodedKey=7BXKISLMVNPBSDAE
-
         String userName = request.getParameter("userName");
         String hostName = request.getParameter("hostName");
         String encodedKey = request.getParameter("encodedKey");
@@ -51,8 +48,16 @@ public class QRcode {
         ImageIO.write(image, "PNG", os);
     }
 
+    @GetMapping("/checkOTP")
+    public String echo(@RequestParam String otpNo) {
 
+        GoogleOTP otp = new GoogleOTP();
 
-
+        if ( otp.isAuthCode(otpNo, "7BXKISLMVNPBSDAE")) {
+            return "true";
+        } else {
+            return "false";
+        }
+    }
 
 }
