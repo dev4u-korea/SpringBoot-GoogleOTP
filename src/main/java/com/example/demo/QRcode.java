@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import com.google.zxing.common.CharacterSetECI;
 import kr.co.hectofinancial.util.GoogleOTP;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,14 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.HashMap;
 
 @RestController
 public class QRcode {
 
-    /*
-     TEST URL = http://localhost:8080/qrimage?userName=moonsun&hostName=nbo.settlebank.co.kr&encodedKey=7BXKISLMVNPBSDAE
-     */
     @RequestMapping(value = "/qrimage", method = RequestMethod.GET)
     public void downloadQrImage(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
@@ -26,8 +21,6 @@ public class QRcode {
         String hostName = request.getParameter("hostName");
         String encodedKey = request.getParameter("encodedKey");
         String otpauth = String.format("otpauth://totp/%s?secret=%s&issuer=%s", userName, encodedKey, hostName);
-
-        // System.out.println("otpauth = " + otpauth);
 
         // QR CODE 이미지 생성
         BufferedImage image = null;
@@ -46,6 +39,9 @@ public class QRcode {
         }
 
         ImageIO.write(image, "PNG", os);
+
+        os.flush();
+
     }
 
     @GetMapping("/checkOTP")
