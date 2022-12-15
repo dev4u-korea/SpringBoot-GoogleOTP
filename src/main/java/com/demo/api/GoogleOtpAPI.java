@@ -1,4 +1,4 @@
-package com.demo.service;
+package com.demo.api;
 
 import com.demo.util.GoogleOTP;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +11,7 @@ import java.io.OutputStream;
 import java.util.HashMap;
 
 @RestController
-public class GoogleOtpService {
+public class GoogleOtpAPI {
 
     @RequestMapping(value = "/genAccount", method = RequestMethod.GET)
     public String genOtpAccount(HttpServletRequest request) {
