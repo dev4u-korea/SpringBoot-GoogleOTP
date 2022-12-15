@@ -13,7 +13,7 @@ import java.util.HashMap;
 @RestController
 public class GoogleOtpAPI {
 
-    @RequestMapping(value = "/genAccount", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/otp/genAccount", method = RequestMethod.GET)
     public String genOtpAccount(HttpServletRequest request) {
 
         String userName = request.getParameter("userName");
@@ -26,7 +26,7 @@ public class GoogleOtpAPI {
         return String.format("encodedKey = %s", map.get("encodedKey"));
     }
 
-    @RequestMapping(value = "/getQrImage", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/otp/getQrImage", method = RequestMethod.GET)
     public void downloadQrImage(HttpServletRequest request, HttpServletResponse response) {
 
         GoogleOTP otp = new GoogleOTP();
@@ -49,7 +49,7 @@ public class GoogleOtpAPI {
         }
     }
 
-    @GetMapping("/authOtpNo")
+    @GetMapping("/api/otp/authOtpNo")
     public String echo(@RequestParam String otpNo, @RequestParam String encodedKey) {
 
         GoogleOTP otp = new GoogleOTP();
