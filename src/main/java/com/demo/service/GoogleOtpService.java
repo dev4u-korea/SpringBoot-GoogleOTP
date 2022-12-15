@@ -1,6 +1,6 @@
-package com.example.demo;
+package com.demo.service;
 
-import kr.co.hectofinancial.util.GoogleOTP;
+import com.demo.util.GoogleOTP;
 import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
