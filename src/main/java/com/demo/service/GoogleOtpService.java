@@ -47,7 +47,6 @@ public class GoogleOtpService {
         } catch (Exception ig) {
             ig.printStackTrace();
         }
-
     }
 
     @GetMapping("/authOtpNo")
