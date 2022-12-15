@@ -33,13 +33,13 @@ public class GoogleOtpService {
         String userName = request.getParameter("userName");
         String hostName = request.getParameter("hostName");
         String encodedKey = request.getParameter("encodedKey");
-        String otpauth = String.format("otpauth://totp/%s?secret=%s&issuer=%s", userName, encodedKey, hostName);
+        String otpAuth = String.format("otpauth://totp/%s?secret=%s&issuer=%s", userName, encodedKey, hostName);
 
         // QR CODE 이미지 생성
         BufferedImage image;
         OutputStream os;
         try {
-            image = otp.getQRImage(otpauth, "UTF-8",200,200);
+            image = otp.getQRImage(otpAuth, "UTF-8",200,200);
             response.setContentType("image/png");
             os = response.getOutputStream();
             ImageIO.write(image, "PNG", os);
