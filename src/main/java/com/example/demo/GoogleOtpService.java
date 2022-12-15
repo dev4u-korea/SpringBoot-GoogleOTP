@@ -8,11 +8,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.OutputStream;
+import java.util.HashMap;
 
 @RestController
 public class GoogleOtpService {
 
-    @RequestMapping(value = "/qrimage", method = RequestMethod.GET)
+    @RequestMapping(value = "/genAccount", method = RequestMethod.GET)
+    public String genOtpAccount(HttpServletRequest request) {
+
+        String userName = request.getParameter("userName");
+        String hostName = request.getParameter("hostName");
+
+        GoogleOTP otp = new GoogleOTP();
+
+        HashMap<String, String> map = otp.generateOTP(userName, hostName);
+
+        return String.format("encodedKey = %s", map.get("encodedKey"));
+    }
+
+    @RequestMapping(value = "/getQrImage", method = RequestMethod.GET)
     public void downloadQrImage(HttpServletRequest request, HttpServletResponse response) {
 
         GoogleOTP otp = new GoogleOTP();
@@ -36,7 +50,7 @@ public class GoogleOtpService {
 
     }
 
-    @GetMapping("/checkOTP")
+    @GetMapping("/authOtpNo")
     public String echo(@RequestParam String otpNo) {
 
         GoogleOTP otp = new GoogleOTP();
@@ -47,5 +61,4 @@ public class GoogleOtpService {
             return "false";
         }
     }
-
 }
