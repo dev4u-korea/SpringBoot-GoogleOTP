@@ -51,11 +51,11 @@ public class GoogleOtpService {
     }
 
     @GetMapping("/authOtpNo")
-    public String echo(@RequestParam String otpNo) {
+    public String echo(@RequestParam String otpNo, @RequestParam String encodedKey) {
 
         GoogleOTP otp = new GoogleOTP();
 
-        if ( otp.isAuthCode(otpNo, "7BXKISLMVNPBSDAE")) {
+        if (otp.isAuthCode(otpNo, encodedKey)) {
             return "true";
         } else {
             return "false";
