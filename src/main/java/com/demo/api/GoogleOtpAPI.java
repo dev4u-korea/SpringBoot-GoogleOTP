@@ -27,7 +27,7 @@ public class GoogleOtpAPI {
     }
 
     @RequestMapping(value = "/api/otp/getQrImage", method = RequestMethod.GET)
-    public void downloadQrImage(HttpServletRequest request, HttpServletResponse response) {
+    public void getQrImage(HttpServletRequest request, HttpServletResponse response) {
 
         GoogleOTP otp = new GoogleOTP();
         String userName = request.getParameter("userName");
@@ -50,7 +50,7 @@ public class GoogleOtpAPI {
     }
 
     @GetMapping("/api/otp/authOtpNo")
-    public String echo(@RequestParam String otpNo, @RequestParam String encodedKey) {
+    public String authOtpNo(@RequestParam String otpNo, @RequestParam String encodedKey) {
 
         GoogleOTP otp = new GoogleOTP();
 
