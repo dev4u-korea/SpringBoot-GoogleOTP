@@ -23,7 +23,7 @@ public class GoogleOtpAPI {
 
         HashMap<String, String> map = otp.generateOTP(userName, hostName);
 
-        return String.format("encodedKey = %s", map.get("encodedKey"));
+        return String.format("encodedKey=%s", map.get("encodedKey"));
     }
 
     @RequestMapping(value = "/api/otp/getQrImage", method = RequestMethod.GET)
