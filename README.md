@@ -13,3 +13,6 @@ STEP 3. Auth By OTP NO
 http://localhost:8080/api/otp/authOtpNo?otpNo={Google Authenticator}&encodedKey={Step 1 Retrun value}
 ex) http://localhost:8080/api/otp/authOtpNo?otpNo=123456&encodedKey=LGKNF63HGZ5XANGS
 
+
+참고 사이트
+https://zero-gravity.tistory.com/221
