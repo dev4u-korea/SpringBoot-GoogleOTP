@@ -7,7 +7,7 @@ ex) http://localhost:8080/api/otp/genAccount?userName=dev4u&hostName=dev4u.co.kr
 
 STEP 2. Show QR Image 
 http://localhost:8080/api/otp/getQrImage??userName={user name}&hostName={host name}&encodedKey={Step 1 Retrun value}
-ex) http://localhost:8080/api/otp/genAccount?userName=dev4u&hostName=dev4u.co.kr&encodedKey=LGKNF63HGZ5XANGS
+ex) http://localhost:8080/api/otp/getQrImage?userName=dev4u&hostName=dev4u.co.kr&encodedKey=LGKNF63HGZ5XANGS
 
 STEP 3. Auth By OTP NO
 http://localhost:8080/api/otp/authOtpNo?otpNo={Google Authenticator}&encodedKey={Step 1 Retrun value}
