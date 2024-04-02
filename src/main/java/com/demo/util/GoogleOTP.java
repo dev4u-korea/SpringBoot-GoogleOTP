@@ -50,9 +50,11 @@ public class GoogleOTP {
         try {
             Base32 codec = new Base32();
             byte[] decodedKey = codec.decode(otpkey);
-            int window = 3;
+            int window = 1;  // 현재 시간을 기준으로 앞,뒤로 1개씩 총 3개 번호 검증.
+
             for (int i = -window; i <= window; ++i) {
                 long hash = verifyCode(decodedKey, wave + i);
+                //System.out.println(">> " + hash + "," + i);
                 if (hash == otpnum) result = true;
             }
         } catch (InvalidKeyException | NoSuchAlgorithmException e) {
