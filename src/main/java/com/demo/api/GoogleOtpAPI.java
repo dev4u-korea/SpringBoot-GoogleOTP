@@ -8,10 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.OutputStream;
+import java.util.Date;
 import java.util.HashMap;
 
 @RestController
 public class GoogleOtpAPI {
+
+    public final Object lock = new Object();
 
     @RequestMapping(value = "/api/otp/genAccount", method = RequestMethod.GET)
     public String genOtpAccount(HttpServletRequest request) {
@@ -22,6 +25,16 @@ public class GoogleOtpAPI {
         GoogleOTP otp = new GoogleOTP();
 
         HashMap<String, String> map = otp.generateOTP(userName, hostName);
+
+      //  synchronized (lock) {
+            System.out.println((">>>>> start1 " + String.format("encodedKey=%s", map.get("encodedKey"))) + new Date().toString());
+            try {
+                Thread.sleep(4000); // 메인 스레드를 4초간 일시 정지
+            } catch (InterruptedException e) {
+               // e.printStackTrace();
+            }
+            System.out.println((">>>>> end1 " + String.format("encodedKey=%s", map.get("encodedKey"))));
+     //   }
 
         return String.format("encodedKey=%s", map.get("encodedKey"));
     }
